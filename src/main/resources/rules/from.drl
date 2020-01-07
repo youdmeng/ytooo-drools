@@ -1,0 +1,12 @@
+package com.ytooo.frm
+dialect "java"
+import com.ytooo.bean.People
+import com.ytooo.bean.Animal
+
+rule "from"
+when
+    $an : Animal()
+    $p : People(sex != 3) from $an.peoples
+    then
+        System.out.println($p);
+    end

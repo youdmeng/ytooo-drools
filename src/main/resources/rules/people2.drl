@@ -1,0 +1,32 @@
+package com.ytooo.people2
+import com.ytooo.bean.People
+dialect  "java"
+
+rule "girl"
+    when
+        $p : People(sex == 0)
+    then
+        System.out.println($p.getName() + "是女孩");
+end
+
+rule "girl1"
+    when
+        People()
+    then
+        System.out.println("girl1规则执行");
+end
+
+rule "girl2"
+    when
+        People(sex == 0)
+    then
+        System.out.println("girl2规则执行");
+end
+rule "girl3"
+    when
+        $p:People(sex == 0,$sex : sex)
+    then
+        System.out.println("girl3规则执行");
+        System.out.println($p);
+        System.out.println($sex);
+end
