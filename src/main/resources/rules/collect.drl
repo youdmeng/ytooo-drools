@@ -1,0 +1,11 @@
+package com.ytooo.collt
+dialect "java"
+import com.ytooo.bean.People
+import java.util.List
+
+rule "collect"
+ when
+    $alarms : List(size >= 3) from collect(People(sex != 3 && drlType == "collect"))
+    then
+        System.out.println("collect执行成功，匹配结果为："+$alarms);
+    end

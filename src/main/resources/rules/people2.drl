@@ -4,27 +4,27 @@ dialect  "java"
 
 rule "girl"
     when
-        $p : People(sex == 0)
+        $p : People(sex == 0 && drlType == "people")
     then
         System.out.println($p.getName() + "是女孩");
 end
 
 rule "girl1"
     when
-        People()
+        People(drlType == "people")
     then
         System.out.println("girl1规则执行");
 end
 
 rule "girl2"
     when
-        People(sex == 0)
+        People(sex == 0 && drlType == "people")
     then
         System.out.println("girl2规则执行");
 end
 rule "girl3"
     when
-        $p:People(sex == 0,$sex : sex)
+        $p:People(sex == 0,$sex : sex && drlType == "people")
     then
         System.out.println("girl3规则执行");
         System.out.println($p);
