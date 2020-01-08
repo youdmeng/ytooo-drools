@@ -3,6 +3,7 @@ package com.ytooo;
 import com.ytooo.bean.Animal;
 import com.ytooo.bean.Cat;
 import com.ytooo.bean.People;
+import com.ytooo.bean.Sensor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +32,7 @@ class DroolsApplicationTests {
         session.insert(people);//插入
         session.fireAllRules();//执行规则
     }
+
     @Test
     public void cat() {
         Cat cat = new Cat();
@@ -39,11 +41,12 @@ class DroolsApplicationTests {
         session.insert(cat);//插入
         session.fireAllRules();//执行规则
     }
+
     @Test
     public void from() {
-        People p1 = new People(1,"达","from");
-        People p2 = new People(0,"秋","from");
-        People p3 = new People(3,"金","from");
+        People p1 = new People(1, "达", "from");
+        People p2 = new People(0, "秋", "from");
+        People p3 = new People(3, "金", "from");
         Animal animal = new Animal();
         animal.setPeoples(new ArrayList<>());
         animal.getPeoples().add(p1);
@@ -52,14 +55,39 @@ class DroolsApplicationTests {
         session.insert(animal);//插入
         session.fireAllRules();//执行规则
     }
-   @Test
+
+    @Test
     public void collect() {
-       session.insert(new People(1, "达","collect"));
-       session.insert(new People(0, "秋","collect"));
-       session.insert(new People(0, "春","collect"));
-       session.insert(new People(1, "夏","collect"));
-       session.insert(new People(0, "冬","collect"));
-       session.insert(new People(3, "金","collect"));
+        session.insert(new People(1, "达", "collect"));
+        session.insert(new People(0, "秋", "collect"));
+        session.insert(new People(0, "春", "collect"));
+        session.insert(new People(1, "夏", "collect"));
+        session.insert(new People(0, "冬", "collect"));
+        session.insert(new People(3, "金", "collect"));
+
+        session.fireAllRules();//执行规则
+    }
+
+    @Test
+    public void accumulate() {
+        session.insert(new Sensor("达", 8.26));
+        session.insert(new Sensor("秋", 7.12));
+        session.insert(new Sensor("春", 3.24));
+        session.insert(new Sensor("夏", 6.32));
+        session.insert(new Sensor("冬", 12.23));
+        session.insert(new Sensor("金", 10.8));
+
+        session.fireAllRules();//执行规则
+    }
+
+    @Test
+    public void diyaccumulate() {
+        session.insert(new People(1, "达", 26, "diyaccumulate"));
+        session.insert(new People(0, "秋", 18, "diyaccumulate"));
+        session.insert(new People(0, "春", 38, "diyaccumulate"));
+        session.insert(new People(1, "夏", 90, "diyaccumulate"));
+        session.insert(new People(0, "冬", 55, "diyaccumulate"));
+        session.insert(new People(3, "金", 12, "diyaccumulate"));
 
         session.fireAllRules();//执行规则
     }

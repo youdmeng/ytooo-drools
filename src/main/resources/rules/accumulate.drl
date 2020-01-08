@@ -1,0 +1,22 @@
+package com.ytooo.collt
+dialect "java"
+import com.ytooo.bean.Sensor
+import com.ytooo.bean.People
+import java.util.List
+
+rule "accumulate"
+  when
+    $avg : Number() from accumulate(Sensor(temp >= 5 && $temp : temp),average($temp))
+  then
+    System.out.println("accumulate成功执行，平均温度为：" + $avg);
+end
+
+rule "diyaccumulate"
+    when
+        $avg: Number() from accumulate(People($age: age,drlType == "diyaccumulate"),
+        init(int $total = 0, $count = 0;),
+        action($total += $age; $count++;),
+        result($total/$count))
+    then
+        System.out.println("Avg: " + $avg);
+end
