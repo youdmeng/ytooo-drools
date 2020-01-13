@@ -1,0 +1,27 @@
+package com.ytooo.updat
+dialect "java"
+import com.ytooo.bean.People
+
+rule 'update1'
+    when
+       $p : People(drlType == "update" && sex == 0)
+    then
+        System.out.println("update1执行====" + $p);
+        $p.setSex(1);
+        update($p)
+    end
+rule 'update2'
+    when
+       $p : People(drlType == "update" && sex == 1)
+    then
+        System.out.println("update2执行====" + $p);
+    end
+rule 'modify'
+    when
+      $p : People(drlType == "update" && sex == 1)
+    then
+       System.out.println("update3执行====" + $p);
+       modify($p){
+         setSex(-1)
+       }
+    end

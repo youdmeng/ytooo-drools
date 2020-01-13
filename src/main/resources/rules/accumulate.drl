@@ -13,10 +13,12 @@ end
 
 rule "diyaccumulate"
     when
+        People(drlType == "diyaccumulate")
         $avg: Number() from accumulate(People($age: age,drlType == "diyaccumulate"),
         init(int $total = 0, $count = 0;),
         action($total += $age; $count++;),
         result($total/$count))
+
     then
         System.out.println("Avg: " + $avg);
 end
