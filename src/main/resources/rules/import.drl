@@ -1,0 +1,18 @@
+package com.rules.impor
+dialect "java"
+import com.ytooo.bean.People
+import function com.ytooo.utils.DroolsStringUtils.isEmpty
+
+
+function String hello(String applicantName) {
+    return "Hello " + applicantName + "!";
+}
+
+rule "impot"
+
+  when
+    $p : People(drlType == "impot")
+  then
+    System.out.println(isEmpty("我"));
+    System.out.println(hello("达"));
+  end

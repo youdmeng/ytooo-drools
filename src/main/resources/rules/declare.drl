@@ -1,0 +1,14 @@
+package com.ytooo.declar
+dialect "java"
+
+declare Love
+    feel : String
+    continued : String
+end
+
+rule "love"
+when
+    $l : Love()
+then
+    System.out.println("自定义事件执行： " + $l);
+end

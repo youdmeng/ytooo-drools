@@ -1,0 +1,8 @@
+package com.ytooo.quey
+dialect "java"
+
+import com.ytooo.bean.People
+
+query "queryPeople" (String $name,Integer $sex)
+    $p : People(name == $name, sex == $sex)
+end

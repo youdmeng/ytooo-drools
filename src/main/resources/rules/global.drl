@@ -1,0 +1,22 @@
+package com.ytooo.globa
+dialect "java"
+
+import com.ytooo.bean.People
+import  java.lang.Integer
+
+global com.ytooo.globa.GloableService service
+global java.util.List list
+global com.ytooo.bean.NumCount numCount
+
+
+
+
+rule "global"
+
+    when
+        People(drlType == "global")
+        $p : People() from service.getPeoples()
+    then
+        list.add($p);
+        numCount.plus();
+    end
